@@ -9,8 +9,35 @@ const User = require('./models/user')
 
 const JWT_KEY = "ultrasecretkey"
 
-const server = new Hapi.Server()
+const server = new Hapi.Server({
+	debug: {
+		request: ['error']
+	}
+})
 server.connection({port: 8080})
+
+//Hapi plugins
+server.register(require('hapi-auth-jwt2'), (err) => {
+	if (err) throw err;
+
+	function validate(decoded, request, callback) {
+		User.forge( { id: decoded.id })
+		.fetch()
+		.then( (user) => {
+			if (user) {
+				callback(null, true, user.toJSON())
+			} else {
+				callback(null, false)
+			}
+		})
+		.catch( (err) => callback(err) )
+	}
+
+	server.auth.strategy('jwt', 'jwt', {
+		key: JWT_KEY,
+		validateFunc: validate
+	})
+})
 
 server.route({
 	method: 'POST',
@@ -61,6 +88,18 @@ server.route({
 				password: Joi.string().required()
 			})
 		}
+	}
+})
+
+server.route({
+	method: 'GET',
+	path: '/v1/sessions',
+	handler: (request, reply) => {
+		//reply(request.auth.credentials)
+		reply(request.auth.credentials.email + ' Acesso autorizado!!')
+	},
+	config: {
+		auth:  'jwt'
 	}
 })
 
