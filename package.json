@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "npm test",
-    "knex": "knex --knexfile ./config/knexfile.js"
+    "knex": "knex --knexfile ./db/knexfile.js"
   },
   "keywords": [
     "node",
@@ -16,6 +16,7 @@
   "license": "ISC",
   "dependencies": {
     "bookshelf": "^0.10.0",
+    "bookshelf-bcrypt": "^2.0.0",
     "bookshelf-uuid": "^1.0.0",
     "hapi": "^13.4.1",
     "knex": "^0.11.7",

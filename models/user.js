@@ -1,9 +1,12 @@
 'use strict'
 
-const db = require('../config/db')
+const db = require('../db')
 
 module.exports = db.Model.extend({
 	tableName: 'users',
 	uuid: true,
-	hasTimestamps: true
+	hasTimestamps: true,
+	bcrypt: {
+		field: 'password'
+	}
 })
