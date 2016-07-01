@@ -7,6 +7,7 @@ const bookshelf = require('bookshelf')(knex)
 
 bookshelf.plugin(require('bookshelf-uuid'))
 bookshelf.plugin(require('bookshelf-bcrypt'))
+bookshelf.plugin('visibility')
 
 module.exports = bookshelf
 

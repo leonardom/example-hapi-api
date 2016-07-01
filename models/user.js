@@ -8,5 +8,6 @@ module.exports = db.Model.extend({
 	hasTimestamps: true,
 	bcrypt: {
 		field: 'password'
-	}
+	},
+	hidden: ['password'] //hide fields when transforming to json
 })
