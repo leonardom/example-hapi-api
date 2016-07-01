@@ -1,0 +1,27 @@
+{
+  "name": "hapi-api",
+  "version": "1.0.0",
+  "description": "Exemplo de API com Hapi",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test",
+    "knex": "knex --knexfile ./config/knexfile.js"
+  },
+  "keywords": [
+    "node",
+    "hapi",
+    "api"
+  ],
+  "author": "Leonardo Marcelino",
+  "license": "ISC",
+  "dependencies": {
+    "bookshelf": "^0.10.0",
+    "bookshelf-uuid": "^1.0.0",
+    "hapi": "^13.4.1",
+    "knex": "^0.11.7",
+    "pg": "^6.0.1"
+  },
+  "devDependencies": {
+    "standard": "^7.1.2"
+  }
+}
