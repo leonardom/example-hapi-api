@@ -14,7 +14,8 @@ server.route({
 		//forge cria instancia em memoria
 		User.forge(request.payload)
 			.save()
-			.then((user) => reply(user))
+			.then( (user) => reply(user) )
+			.catch( (err) => reply({error: err.detail}).code(409) )
 	}
 })
 
